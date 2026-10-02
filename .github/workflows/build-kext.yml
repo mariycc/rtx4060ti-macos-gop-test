@@ -18,10 +18,15 @@ jobs:
           persist-credentials: false
       - name: Build and check Mach-O format
         run: python3 build_mac.py
+      - name: Check offline OpenCore injection without booting
+        run: python3 check_opencore_link_mac.py
       - name: Save uninstalled test candidate
+        if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: NVGopFramebuffer2803-UNTESTED
-          path: dist/NVGopFramebuffer2803-UNTESTED.zip
+          path: |
+            dist/NVGopFramebuffer2803-UNTESTED.zip
+            dist/OC-link-check.zip
           if-no-files-found: error
           retention-days: 1

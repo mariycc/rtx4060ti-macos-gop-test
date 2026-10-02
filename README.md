@@ -73,11 +73,25 @@ actual Tahoe 25.6.0 Recovery kernel collections: 274 in the kernel, 90 in
 IOGraphicsFamily and two in IOPCIFamily. This is an offline presence check;
 the target kernel has not loaded or linked this extension yet.
 
+An offline comparison also matched all 353 superclass vtable entries, with
+21 expected subclass overrides and no unexplained differences. The actual
+IOFramebuffer superclass size is 464 bytes; the candidate starts its fields
+at byte 464 and has a total size of 488 bytes.
+
+The graphics dependency is in BaseSystemKernelExtensions.kc, while this
+machine's OpenCore log shows injection into BootKernelExtensions.kc. Symbol
+presence across both collections does not prove that the OpenCore linker can
+see those definitions. `check_opencore_link_mac.py` is prepared to check the
+real OpenCore 1.0.8 linker against the exact Recovery image, first with the
+candidate alone, then with the stock Apple IOGraphicsFamily before it. It keeps
+only reports and logs; its patched `out.bin` must never be used for booting.
+The original Apple files are not published in this source repository.
+
 The artifact is named `NVGopFramebuffer2803-UNTESTED`; the repository contains
 source, not a release driver. Build-time reports retain the original source
 manifest and the preparation-stage provenance for that exact commit.
 
-Darwin 25 symbol resolution, actual superclass ABI, Recovery compatibility
-and graphical boot remain unverified. Kernel code has not been executed on
+Runtime symbol resolution, cross-collection initialization, Recovery
+compatibility and graphical boot remain unverified. Kernel code has not been executed on
 the target PC. This experiment does not provide acceleration or Metal.
 See README-RU.md for the current status in Russian.

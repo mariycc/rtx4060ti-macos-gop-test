@@ -97,5 +97,13 @@
       "IOPCIFamilyDefinitions": 2,
       "RuntimeLinkVerified": false
     }
+  },
+  "OfflineOpenCoreLinkCheck": {
+    "Prepared": true,
+    "Executed": false,
+    "OpenCoreCommit": "6fe4d15cb66596d99d8cfedce69d8fc6dad71886",
+    "OriginalBaseSystemGraphicsReferencesDetected": true,
+    "RuntimeCrossCollectionHandlingVerified": false,
+    "USBTrialReady": false
   }
 }

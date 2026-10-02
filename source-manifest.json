@@ -17,6 +17,6 @@
     "upstream/Info.plist": "6a2957cd5ee9da477d1bfb9ebe06a273b854ce40bc5787c71f85803ccc1d4a0a",
     "upstream/README.md": "f698e5790b501bf5080bda6403cc4da187dcd1f01e39da615f66e7d08601c764",
     "upstream/LICENSE": "9feefe523f08667cf2870061912001587b76c754fbb821cf7e64ca4586b2c18e",
-    "check_opencore_link_mac.py": "2d64f87cf4016914395d1035bd1d5240a6f723df74ef2381655a6d38f0f86463"
+    "check_opencore_link_mac.py": "aacd815836602f17784edd9e89221da509cd4a831f12a99a600392e225ad0048"
   }
 }

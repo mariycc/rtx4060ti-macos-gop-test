@@ -4,6 +4,7 @@ import json
 from pathlib import Path, PurePosixPath
 import platform
 import plistlib
+import shlex
 import subprocess
 import sys
 import tempfile
@@ -161,6 +162,13 @@ def main():
                               text=True, capture_output=True).stdout
     if "Apple clang" not in compiler:
         raise ValueError("Apple clang is required")
+    sdk = Path(subprocess.run(
+        ["xcrun", "--sdk", "macosx", "--show-sdk-path"], check=True,
+        text=True, capture_output=True).stdout.strip())
+    if not sdk.is_absolute() or not (sdk / "usr/include/stdlib.h").is_file():
+        raise ValueError("macOS SDK with standard C headers is required")
+    if any(character in str(sdk) for character in "$#\r\n"):
+        raise ValueError("Unsupported macOS SDK path for make")
     build_root = root / "build"
     build_root.mkdir(exist_ok=True)
     deadline = time.monotonic() + 480
@@ -169,6 +177,7 @@ def main():
         "SourceManifestSHA256": manifest_sha,
         "OpenCoreCommit": OC_COMMIT, "OpenCoreArchiveSHA256": OC_SHA256,
         "AUDKCommit": AUDK_COMMIT, "AUDKArchiveSHA256": AUDK_SHA256,
+        "MacOSSDKPath": str(sdk),
         "RecoveryDMGSHA256": DMG_SHA256,
         "ExpectedRecoveryBuild": BUILD_ID,
         "KernelExecuted": False, "DriverInstalled": False,
@@ -204,8 +213,17 @@ def main():
             candidate_binary, candidate_info, candidate_sha = unpack_candidate(root, staging, manifest, report)
             report["CandidateBinarySHA256"] = candidate_sha
             utility_dir = oc / "Utilities" / "TestKextInject"
+            # Apple's absolute clang path needs an explicit SDK on this runner.
+            # A final makefile appends flags to both shared-object recipes and
+            # the linker without replacing the official makefile's defaults.
+            sdk_makefile = staging / "apple-sdk.mk"
+            sdk_flags = "-isysroot " + shlex.quote(str(sdk))
+            sdk_makefile.write_text(
+                "SHARED_CFLAGS += " + sdk_flags + "\nLDFLAGS += " + sdk_flags + "\n",
+                encoding="utf-8")
             result, _ = run_logged(
-                ["make", "-j2", "CC=" + clang, "DEBUG=1", "UDK_PATH=" + str(audk)],
+                ["make", "-f", "Makefile", "-f", str(sdk_makefile), "-j2",
+                 "CC=" + clang, "DEBUG=1", "UDK_PATH=" + str(audk)],
                 utility_dir, logs / "utility-build.log", timeout=remaining(deadline, 240))
             if result.returncode:
                 raise RuntimeError(f"Official TestKextInject build failed ({result.returncode})")

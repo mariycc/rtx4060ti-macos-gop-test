@@ -4,7 +4,7 @@
   "License": "MIT",
   "Copyright": "Copyright (c) 2026 bdwithganesh",
   "Candidate": "NVGopFramebuffer2803",
-  "State": "SourceBuiltFormatCheckedTargetUninstalled",
+  "State": "SourceBuiltOfflineInjectionStagesCheckedRuntimeBlocked",
   "UpstreamSources": [
     {
       "Path": "drivers/NVFramebuffer/NVFramebuffer.cpp",
@@ -100,10 +100,17 @@
   },
   "OfflineOpenCoreLinkCheck": {
     "Prepared": true,
-    "Executed": false,
+    "Executed": true,
     "OpenCoreCommit": "6fe4d15cb66596d99d8cfedce69d8fc6dad71886",
     "OriginalBaseSystemGraphicsReferencesDetected": true,
     "RuntimeCrossCollectionHandlingVerified": false,
-    "USBTrialReady": false
+    "USBTrialReady": false,
+    "RunURL": "https://github.com/mariycc/rtx4060ti-macos-gop-test/actions/runs/37001186891",
+    "SourceCommit": "e230fae06b6d2bfbe39ed6154410d6cb3d56786c",
+    "ActualKextInjectionStagesPassed": true,
+    "FullUtilitySucceeded": false,
+    "FullUtilityExitCode": 255,
+    "Failure": "Other built-in fixtures failed: Intel82574LEthernet exclusion, AppleCpuPmCfgLock, XhciPortLimit1. Strict full-check failure retained.",
+    "ArtifactSHA256": "9a41e0f8cacc06d243bf9832b691c5f004dd6bc88bb5cb2d1b850321010743ae"
   }
 }

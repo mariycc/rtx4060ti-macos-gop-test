@@ -81,11 +81,29 @@ at byte 464 and has a total size of 488 bytes.
 The graphics dependency is in BaseSystemKernelExtensions.kc, while this
 machine's OpenCore log shows injection into BootKernelExtensions.kc. Symbol
 presence across both collections does not prove that the OpenCore linker can
-see those definitions. `check_opencore_link_mac.py` is prepared to check the
+see those definitions. `check_opencore_link_mac.py` checks the
 real OpenCore 1.0.8 linker against the exact Recovery image, first with the
 candidate alone, then with the stock Apple IOGraphicsFamily before it. It keeps
 only reports and logs; its patched `out.bin` must never be used for booting.
 The original Apple files are not published in this source repository.
+
+The offline check ran at
+https://github.com/mariycc/rtx4060ti-macos-gop-test/actions/runs/37001186891.
+The signed Recovery 25G83 image, Boot KC, stock graphics and candidate binary
+matched their pinned hashes. Candidate-only injection failed vtable resolution
+as expected. With stock graphics first, both actual kext-injection stages and
+prelink completion reported Success. The whole utility returned 255 because
+separate built-in fixtures failed, including Intel82574LEthernet exclusion,
+AppleCpuPmCfgLock and XhciPortLimit1. The full workflow remains failed; its
+errors and strict success criteria were retained.
+
+This result is not deployable. The original BaseSystem KC contains fixed
+IONDRVSupport references to the original IOFramebuffer metaclass and vtable;
+adding another graphics copy to Boot KC does not rebuild those references.
+A correctly linked single-copy pair needs a matching KDK, standalone XNU
+kernel and complete stock extension repository. The Recovery inputs currently
+available are insufficient. No custom installer, kernel execution, USB change
+or security-policy change was performed by this experiment.
 
 The artifact is named `NVGopFramebuffer2803-UNTESTED`; the repository contains
 source, not a release driver. Build-time reports retain the original source

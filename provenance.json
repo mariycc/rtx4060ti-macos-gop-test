@@ -1,0 +1,78 @@
+{
+  "Repository": "https://github.com/bdwithganesh/OpenNVDA",
+  "Commit": "2044adc11ceea642b2798b1943c292891562ae2b",
+  "License": "MIT",
+  "Copyright": "Copyright (c) 2026 bdwithganesh",
+  "Candidate": "NVGopFramebuffer2803",
+  "State": "SourceSyntaxCheckedMacBuildPreparedUnbuiltUninstalled",
+  "UpstreamSources": [
+    {
+      "Path": "drivers/NVFramebuffer/NVFramebuffer.cpp",
+      "LocalPath": "upstream/NVFramebuffer.cpp",
+      "URL": "https://raw.githubusercontent.com/bdwithganesh/OpenNVDA/2044adc11ceea642b2798b1943c292891562ae2b/drivers/NVFramebuffer/NVFramebuffer.cpp",
+      "SHA256": "8538ee185b7bc33d59d515271243a2af919d3015432143aff3b635aa068e01cb",
+      "Bytes": 118187
+    },
+    {
+      "Path": "drivers/NVFramebuffer/Info.plist",
+      "LocalPath": "upstream/Info.plist",
+      "URL": "https://raw.githubusercontent.com/bdwithganesh/OpenNVDA/2044adc11ceea642b2798b1943c292891562ae2b/drivers/NVFramebuffer/Info.plist",
+      "SHA256": "6a2957cd5ee9da477d1bfb9ebe06a273b854ce40bc5787c71f85803ccc1d4a0a",
+      "Bytes": 1534
+    },
+    {
+      "Path": "drivers/NVFramebuffer/module.cpp",
+      "LocalPath": "upstream/module.cpp",
+      "URL": "https://raw.githubusercontent.com/bdwithganesh/OpenNVDA/2044adc11ceea642b2798b1943c292891562ae2b/drivers/NVFramebuffer/module.cpp",
+      "SHA256": "ef9f1f1c89201554faf3a9c0479e960abcffc0ad7f50f6cea7a8b9ca294ceda6",
+      "Bytes": 482
+    },
+    {
+      "Path": "drivers/NVFramebuffer/README.md",
+      "LocalPath": "upstream/README.md",
+      "URL": "https://raw.githubusercontent.com/bdwithganesh/OpenNVDA/2044adc11ceea642b2798b1943c292891562ae2b/drivers/NVFramebuffer/README.md",
+      "SHA256": "f698e5790b501bf5080bda6403cc4da187dcd1f01e39da615f66e7d08601c764",
+      "Bytes": 647
+    },
+    {
+      "Path": "LICENSE",
+      "LocalPath": "upstream/LICENSE",
+      "URL": "https://raw.githubusercontent.com/bdwithganesh/OpenNVDA/2044adc11ceea642b2798b1943c292891562ae2b/LICENSE",
+      "SHA256": "9feefe523f08667cf2870061912001587b76c754fbb821cf7e64ca4586b2c18e",
+      "Bytes": 1069
+    }
+  ],
+  "AppleConsoleFlagReference": "https://github.com/apple-oss-distributions/IOGraphics/blob/IOGraphics-599/IONDRVSupport/IONDRVFramebuffer.cpp#L4405",
+  "Changes": [
+    "Extracted only the existing GOP aperture and one-mode IOFramebuffer implementation",
+    "Unique candidate class and bundle identity; exact PCI vendor 10DE and device 2803 matching",
+    "IOFramebuffer match category shared with Apple's NDRV personality to avoid a duplicate attach category",
+    "Validated native-width console geometry before narrowing; checked stride and frame-size overflow",
+    "Rejected unsupported console rotation/offset and disabled PCI memory decoding without altering hardware state",
+    "Retained 64-bit physical address and size types; cleared the two low console address flags",
+    "Replaced addition-based aperture end checks with subtraction-based BAR1 bounds",
+    "Removed all NVRAM, network, timers, HUD, firmware, private message-buffer and process code"
+  ],
+  "Verified": {
+    "KernelBinaryBuilt": false,
+    "Darwin25SymbolsValidated": false,
+    "KernelExecution": false,
+    "USBModified": false,
+    "GUIBoot": false,
+    "Acceleration": false,
+    "CppSyntaxAndTypes": true,
+    "MacBuildRecipePrepared": true,
+    "KnownOfficialKextFormatParserCheck": true,
+    "MalformedMachORejections": 6,
+    "GitHubPublished": false
+  },
+  "BuildToolchain": {
+    "SyntaxCompiler": "LLVM 20.1.8",
+    "Target": "x86_64-apple-macos11.0",
+    "MacKernelSDKCommit": "3f750085caa17ec3a7880f11c11bf4f48cd6a164",
+    "MacKernelSDKArchiveSHA256": "f028466e8a18cae2e95724152f915a44afc6352a8a80ae3d85567c55b6c1d60d",
+    "LocalObjectWrite": "Denied by Windows Controlled Folder Access, event 1123; not bypassed",
+    "LocalLinker": "LLVM ld64.lld 20.1.8 does not implement kext output",
+    "ActualAppleBuildRun": false
+  }
+}

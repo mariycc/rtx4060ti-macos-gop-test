@@ -1,0 +1,21 @@
+{
+  "State": "SourceOnlyUnbuiltUninstalled",
+  "Files": {
+    "NVGopFramebuffer.cpp": "5ff2cc1cec1f689d43af895c185b9c2fdce4494e3415b09a37e19d0894329ae4",
+    "module.cpp": "4a3306f5ca5ec82d9427d21b7d12fbc52f4e4a97924a7cdabf6552713b6656d6",
+    "Info.plist": "5fd93b65eefe350c36e7cf166c3d6787b50300c1cbdc64179f526043f13abda0",
+    "LICENSE": "9feefe523f08667cf2870061912001587b76c754fbb821cf7e64ca4586b2c18e",
+    "README.md": "a145bdd78451e12c52f1e48b04f40eb3c7c5757a85c7761d920764385171dc0b",
+    "README-RU.md": "897bdb28d84aeb1b5ca90773931802ebfb3affac6f61c847f52aae6301e554c9",
+    "provenance.json": "b722f03cc617c2d89318b6b07458c1cea047c6617d2ac70871899075a02b6075",
+    "build_mac.py": "a755cea8eb7364d1096f6ef2def70266e73a648fa1161b5a3ba270373f49fd1c",
+    "verify_kext.py": "ada187e867decf4a9c34cffef072258d0e02f27dc6ec08fb94a0918bde66672f",
+    ".gitignore": "f2142c2a1822f28784f63bf1578f2aebf4e7705effbe87b94d58ee95775f1d3c",
+    ".github/workflows/build-kext.yml": "90e558ddd799cd73ac72aed9daf573df232fa9481379d8b16a8306be9370f243",
+    "upstream/NVFramebuffer.cpp": "8538ee185b7bc33d59d515271243a2af919d3015432143aff3b635aa068e01cb",
+    "upstream/module.cpp": "ef9f1f1c89201554faf3a9c0479e960abcffc0ad7f50f6cea7a8b9ca294ceda6",
+    "upstream/Info.plist": "6a2957cd5ee9da477d1bfb9ebe06a273b854ce40bc5787c71f85803ccc1d4a0a",
+    "upstream/README.md": "f698e5790b501bf5080bda6403cc4da187dcd1f01e39da615f66e7d08601c764",
+    "upstream/LICENSE": "9feefe523f08667cf2870061912001587b76c754fbb821cf7e64ca4586b2c18e"
+  }
+}

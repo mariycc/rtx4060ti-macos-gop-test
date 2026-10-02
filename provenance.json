@@ -4,7 +4,7 @@
   "License": "MIT",
   "Copyright": "Copyright (c) 2026 bdwithganesh",
   "Candidate": "NVGopFramebuffer2803",
-  "State": "SourceSyntaxCheckedMacBuildPreparedUnbuiltUninstalled",
+  "State": "SourceBuiltFormatCheckedTargetUninstalled",
   "UpstreamSources": [
     {
       "Path": "drivers/NVFramebuffer/NVFramebuffer.cpp",
@@ -54,7 +54,7 @@
     "Removed all NVRAM, network, timers, HUD, firmware, private message-buffer and process code"
   ],
   "Verified": {
-    "KernelBinaryBuilt": false,
+    "KernelBinaryBuilt": true,
     "Darwin25SymbolsValidated": false,
     "KernelExecution": false,
     "USBModified": false,
@@ -64,7 +64,7 @@
     "MacBuildRecipePrepared": true,
     "KnownOfficialKextFormatParserCheck": true,
     "MalformedMachORejections": 6,
-    "GitHubPublished": false
+    "GitHubPublished": true
   },
   "BuildToolchain": {
     "SyntaxCompiler": "LLVM 20.1.8",
@@ -73,6 +73,29 @@
     "MacKernelSDKArchiveSHA256": "f028466e8a18cae2e95724152f915a44afc6352a8a80ae3d85567c55b6c1d60d",
     "LocalObjectWrite": "Denied by Windows Controlled Folder Access, event 1123; not bypassed",
     "LocalLinker": "LLVM ld64.lld 20.1.8 does not implement kext output",
-    "ActualAppleBuildRun": false
+    "ActualAppleBuildRun": true
+  },
+  "FirstBuild": {
+    "Repository": "https://github.com/mariycc/rtx4060ti-macos-gop-test",
+    "SourceCommit": "0020ad02cadb34aa5ad9a1acec1a894e2bee3dbd",
+    "RunURL": "https://github.com/mariycc/rtx4060ti-macos-gop-test/actions/runs/36995414551",
+    "GitHubArtifactSHA256": "682844d5bf686adc889fb376fe277e27bc862081d50d78ce7989d2fb7f6ea86a",
+    "BinarySHA256": "eb48a437e5d98325a610ac09988159940268af803435fdea699d34a5541f4307",
+    "BinaryBytes": 40024,
+    "MachOType": "MH_KEXT_BUNDLE",
+    "Architecture": "x86_64",
+    "DynamicRelocations": 421,
+    "LocalFormatChecksPassed": true,
+    "RuntimeTested": false,
+    "GUIBootVerified": false,
+    "RecoverySymbolPresenceCheck": {
+      "Darwin": "25.6.0",
+      "ImportedSymbols": 366,
+      "MissingSymbols": 0,
+      "KernelDefinitions": 274,
+      "IOGraphicsFamilyDefinitions": 90,
+      "IOPCIFamilyDefinitions": 2,
+      "RuntimeLinkVerified": false
+    }
   }
 }

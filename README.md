@@ -16,8 +16,7 @@ The source requires an x86_64 LP64 kernel build with compatible MacKernelSDK
 headers and IOGraphicsFamily/IOPCIFamily interfaces. The upstream repository's
 root README references `tools/build_kext.sh` and `macos-lab/workspace.sh`, which
 are absent at the pinned commit. No upstream build scripts were executed.
-No binary is supplied by this source preparation step. The two C++ sources passed
-LLVM 20.1.8 syntax and type checks on Windows against MacKernelSDK commit
+The two C++ sources passed LLVM 20.1.8 syntax and type checks on Windows against MacKernelSDK commit
 `3f750085caa17ec3a7880f11c11bf4f48cd6a164`, using the modern
 `x86_64-apple-macos11.0` target and kernel/kext compiler flags.
 
@@ -56,8 +55,29 @@ Folder Access also rejected the local clang object-file write (Defender event
 1123); the blocked write was not retried through another path or program.
 The Windows compiler was used only for read-only source checking afterward.
 
-Status: source reviewed, Apple build recipe prepared but not run. Binary
-code generation/linking, Darwin 25 symbol resolution, actual superclass ABI,
-Recovery compatibility and graphical boot remain unverified. This folder has
-not been copied to the USB, no kernel code has been executed, and no code has
-been uploaded to GitHub. See README-RU.md for the next steps in Russian.
+## Verified build, untested hardware
+
+The public source repository is
+https://github.com/mariycc/rtx4060ti-macos-gop-test. Its first manual build succeeded:
+https://github.com/mariycc/rtx4060ti-macos-gop-test/actions/runs/36995414551
+from commit `0020ad02cadb34aa5ad9a1acec1a894e2bee3dbd`.
+
+Apple clang 17 and Apple's `ld -kext` produced a 40,024-byte x86_64
+MH_KEXT_BUNDLE with 421 dynamic relocations. The downloaded GitHub artifact
+matched the digest displayed on the run page, and an independent local pass
+of the format checker matched `build-report.json`. Binary SHA-256:
+`eb48a437e5d98325a610ac09988159940268af803435fdea699d34a5541f4307`.
+
+All 366 imported symbol names were found as external definitions in the
+actual Tahoe 25.6.0 Recovery kernel collections: 274 in the kernel, 90 in
+IOGraphicsFamily and two in IOPCIFamily. This is an offline presence check;
+the target kernel has not loaded or linked this extension yet.
+
+The artifact is named `NVGopFramebuffer2803-UNTESTED`; the repository contains
+source, not a release driver. Build-time reports retain the original source
+manifest and the preparation-stage provenance for that exact commit.
+
+Darwin 25 symbol resolution, actual superclass ABI, Recovery compatibility
+and graphical boot remain unverified. Kernel code has not been executed on
+the target PC. This experiment does not provide acceleration or Metal.
+See README-RU.md for the current status in Russian.
